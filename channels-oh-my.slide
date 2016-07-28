@@ -1,0 +1,106 @@
+Goroutines, Channels Oh My!
+11:11 20 July 2016
+Tags: golang, channels, goroutines
+
+Austin Riendeau
+Application Engineer, Bitly
+ar@bit.ly
+http://www.apriendeau.com/
+@apriendeau
+
+* Another Goroutine Talk
+
+.image ./img/techtalk.gif
+
+* Coroutines
+
+- we call them "goroutines" because... *why not?*
+
+.caption coroutines are computer program components that generalize subroutines for nonpreemptive multitasking, by allowing multiple entry points for suspending and resuming execution at certain locations. [[https://en.wikipedia.org/wiki/Coroutine][Wikipedia]]
+
+- So in essence, corountines is a way to *multi-task*.
+
+* Concurrency != Parallelism
+
+- We all know this but if you don't is here is the video for reference.
+
+.link https://youtu.be/cN_DpYBzKso Concurrency is Not Parallelism
+
+* Goroutines
+
+.code -numbers ./code/goroutines/goroutines.go
+
+* Output
+
+	∫ goroutines ❯ go run goroutines.go
+	Cooking chicken:0
+	Cooking chicken:1
+	Cooking chicken:2
+	done
+
+* WTF happened to my cake?
+
+.image ./img/angry-panda.gif
+
+* because we all know...
+
+.image ./img/cake-lie.jpg 500 _
+
+.caption Cake appears in Portal but Portal 2
+
+* Channels
+
+channels are a typed conduit through which you can send and receive values and comes in two flavors: Buffered vs Unbuffered
+
+- Buffered channels have limit where Unbuffered does now.
+
+	// initialize buffered channel
+
+	bufChan := make(chan int, 100)
+
+- Don't have a limit but they really do...
+
+	make(chan int)
+
+	make(chan int, 0)
+
+* Music Analogy
+
+.image ./img/second-iteration.jpg 500 _
+
+* Buffered - What happens if you exceed the limit?
+
+	fatal error: all goroutines are asleep - deadlock!
+
+	goroutine 1 [chan send]:
+	main.main()
+		/Users/austin/Go/src/github.com/apriendeau/channels-oh-my/code/buffered/main.go:23 +0xf9
+
+	goroutine 5 [chan send]:
+	main.worker(0x1, 0xc420050070, 0xc4200500e0)
+		/Users/austin/Go/src/github.com/apriendeau/channels-oh-my/code/buffered/main.go:10 +0x23f
+	created by main.main
+		/Users/austin/Go/src/github.com/apriendeau/channels-oh-my/code/buffered/main.go:19 +0xa5
+
+	goroutine 6 [chan send]:
+	main.worker(0x2, 0xc420050070, 0xc4200500e0)
+		/Users/austin/Go/src/github.com/apriendeau/channels-oh-my/code/buffered/main.go:10 +0x23f
+	created by main.main
+		/Users/austin/Go/src/github.com/apriendeau/channels-oh-my/code/buffered/main.go:19 +0xa5
+
+	exit status 2
+
+* CODE!
+
+.code -numbers ./code/unbuffered/main.go
+
+* Final Thoughts:
+
+Channels are slow... but you will not likely need anything faster.
+
+*Remember:*
+
+.caption Don't communicate by sharing memory, share memory by communicating.
+.caption Channels orchestrate; mutexes serialize.
+.caption Clear is better than clever.
+
