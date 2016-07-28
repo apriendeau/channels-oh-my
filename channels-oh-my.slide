@@ -96,7 +96,9 @@ channels are a typed conduit through which you can send and receive values and c
 
 * Final Thoughts:
 
-Channels are slow... but you will not likely need anything faster.
+- Channels are slow... but you will not likely need anything faster.
+
+- Wait Groups and Re are an amazing synchronization tools
 
 *Remember:*
 
@@ -104,3 +106,7 @@ Channels are slow... but you will not likely need anything faster.
 .caption Channels orchestrate; mutexes serialize.
 .caption Clear is better than clever.
 
+
+* extra
+
+.link http://divan.github.io/talks/2016/gophercon/#/10
