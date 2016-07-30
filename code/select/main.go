@@ -13,8 +13,10 @@ func main() {
 		select {
 		case msg := <-ch1:
 			fmt.Printf("Channel 1: %s\n", msg)
-		case msg := <-ch2:
-			fmt.Printf("Channel 2: %s\n", msg)
 		}
 	}
+
+	// receiver
+
+	<-ch2
 }

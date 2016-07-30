@@ -18,7 +18,9 @@ http://www.apriendeau.com/
 
 .caption coroutines are computer program components that generalize subroutines for nonpreemptive multitasking, by allowing multiple entry points for suspending and resuming execution at certain locations. [[https://en.wikipedia.org/wiki/Coroutine][Wikipedia]]
 
-- So in essence, corountines is a way to *multi-task*.
+* So...
+
+- Corountines is a way to *multi-task*.
 
 * Concurrency != Parallelism
 
@@ -29,6 +31,8 @@ http://www.apriendeau.com/
 * Goroutines
 
 .code -numbers ./code/goroutines/goroutines.go
+
+but there is a problem here...
 
 * Output
 
@@ -67,6 +71,11 @@ channels are a typed conduit through which you can send and receive values and c
 * Music Analogy
 
 .image ./img/second-iteration.jpg 500 _
+
+* Stop, Rewind... buffered channels are good for what?
+
+- Synchronization
+- Optimization
 
 * Buffered - What happens if you exceed the limit?
 

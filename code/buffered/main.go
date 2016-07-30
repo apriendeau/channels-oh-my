@@ -1,7 +1,9 @@
 package main
 
-import "fmt"
-import "time"
+import (
+	"fmt"
+	"time"
+)
 
 func worker(id int, jobs <-chan int, results chan<- int) {
 	for j := range jobs {
@@ -12,8 +14,8 @@ func worker(id int, jobs <-chan int, results chan<- int) {
 }
 
 func main() {
-	jobs := make(chan int, 100)
-	results := make(chan int, 100)
+	jobs := make(chan int, 10)
+	results := make(chan int, 10)
 
 	for w := 1; w <= 3; w++ {
 		go worker(w, jobs, results)
